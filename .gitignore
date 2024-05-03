@@ -1,0 +1,4 @@
+.env
+secret_key.py
+app.rest
+venv
