@@ -86,14 +86,12 @@ def update_user(user_id):
 @app.route('/user/<int:user_id>', methods=['DELETE'])
 def delete_user(user_id):
     try:
-        user_id = session['user_id']
         user = User.query.get(user_id)
         if not user:
             return jsonify({"error": "User not found"}), 404
         
         db.session.delete(user)
         db.session.commit()
-        session.pop('user_id', None)
 
         return jsonify({"message": "User deleted successfully"}), 200
     except Exception as e:
