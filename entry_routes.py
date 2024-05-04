@@ -58,23 +58,7 @@ def update_entry(entry_id):
 
         return jsonify({"message": "Entry updated successfully"}), 200
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-# deleting an entry
-@app.route('/entries/<int:entry_id>', methods=['DELETE'])
-def delete_entry(entry_id):
-    try:
-        entry = Entry.query.get(entry_id)
-        if not entry:
-            return jsonify({"error": "Entry not found"}), 404
-        db.session.delete(entry)
-        db.session.commit()
-
-        return jsonify({"message": "Entry deleted successfully"}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-    
+        return jsonify({"error": str(e)}), 500    
 
 @app.route('/entries/<date>', methods=['GET'])
 def get_entries_by_date(date):
