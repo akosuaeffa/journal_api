@@ -15,20 +15,20 @@ This is a RESTful API for managing journal entries.
 
 # Getting Started
 To get started with this project, follow these steps:
-## Clone this repository to your local machine:
+## 1. Clone this repository to your local machine:
 `git clone https://github.com/akosuaeffa/journal_api.git`
 
-### Install the required dependencies:
+### 2. Install the required dependencies:
 `pip install -r requirements.txt`
 
-### Set up your database:
+### 3. Set up your database:
 Create a PostgreSQL database.
 Update the database URI in the .env file.
 
-### Run the application:
+### 4. Run the application:
 `python journal_api.py`
 
-### Access the API endpoints using a tool like Postman or cURL.
+### 5. Access the API endpoints using a tool like Postman or cURL.
 
 # API Endpoints
 - `/user`: CRUD operations for users.
