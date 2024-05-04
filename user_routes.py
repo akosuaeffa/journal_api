@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify, request, session
 from flask_sqlalchemy import SQLAlchemy
 from models import db, User, Entry
 from journal_api import app
