@@ -16,25 +16,25 @@ Python: A high-level programming language.
 # Getting Started
 To get started with this project, follow these steps:
 ## Clone this repository to your local machine:
-'git clone https://github.com/akosuaeffa/journal_api.git'
+`git clone https://github.com/akosuaeffa/journal_api.git`
 
 ### Install the required dependencies:
-'pip install -r requirements.txt'
+`pip install -r requirements.txt`
 
 ### Set up your database:
 Create a PostgreSQL database.
 Update the database URI in the .env file.
 
 ### Run the application:
-'python journal_api.py'
+`python journal_api.py`
 
 ### Access the API endpoints using a tool like Postman or cURL.
 
 # API Endpoints
-- '/user': CRUD operations for users.
-- '/entries': CRUD operations for journal entries.
-- '/user/<user_id>/entries': Retrieve entries for a specific user.
-- '/entries/<date>': Retrieve entries for a specific date.
+- `/user`: CRUD operations for users.
+- `/entries`: CRUD operations for journal entries.
+- `/user/<user_id>/entries`: Retrieve entries for a specific user.
+- `/entries/<date>`: Retrieve entries for a specific date.
 
 # Contributing
 Contributions are welcome! Please follow these guidelines when contributing:
