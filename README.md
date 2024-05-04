@@ -2,16 +2,16 @@
 This is a RESTful API for managing journal entries.
 
 # Features
-Create, read, update, and delete (CRUD) operations for users and journal entries.
-Retrieve entries by date.
-User authentication.
-Error handling for invalid requests.
+- Create, read, update, and delete (CRUD) operations for users and journal entries.
+- Retrieve entries by date.
+- User authentication.
+- Error handling for invalid requests.
 
 # Technologies Used 
-Flask: A lightweight web application framework for Python.
-SQLAlchemy: An Object-Relational Mapping (ORM) library for Python.
-PostgreSQL: A powerful open-source relational database management system.
-Python: A high-level programming language.
+- Flask: A lightweight web application framework for Python.
+- SQLAlchemy: An Object-Relational Mapping (ORM) library for Python.
+- PostgreSQL: A powerful open-source relational database management system.
+- Python: A high-level programming language.
 
 # Getting Started
 To get started with this project, follow these steps:
