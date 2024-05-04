@@ -31,12 +31,16 @@ Update the database URI in the .env file.
 ### Access the API endpoints using a tool like Postman or cURL.
 
 # API Endpoints
+- '/user': CRUD operations for users.
+- '/entries': CRUD operations for journal entries.
+- '/user/<user_id>/entries': Retrieve entries for a specific user.
+- '/entries/<date>': Retrieve entries for a specific date.
 
 # Contributing
 Contributions are welcome! Please follow these guidelines when contributing:
 
-Fork the repository.
-Create a new branch for your feature or bug fix.
-Make your changes and commit them.
-Push your changes to your fork.
-Submit a pull request.
+1.Fork the repository.
+2.Create a new branch for your feature or bug fix.
+3.Make your changes and commit them.
+4.Push your changes to your fork.
+5.Submit a pull request.
