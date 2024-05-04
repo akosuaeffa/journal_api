@@ -39,8 +39,8 @@ Update the database URI in the .env file.
 # Contributing
 Contributions are welcome! Please follow these guidelines when contributing:
 
-1.Fork the repository.
-2.Create a new branch for your feature or bug fix.
-3.Make your changes and commit them.
-4.Push your changes to your fork.
-5.Submit a pull request.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Submit a pull request.
