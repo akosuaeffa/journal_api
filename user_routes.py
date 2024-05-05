@@ -2,6 +2,7 @@ from flask import jsonify, request, session
 from flask_sqlalchemy import SQLAlchemy
 from models import db, User, Entry
 from journal_api import app
+from sqlalchemy.exc import IntegrityError
 
 # CRUD operations for users
 # route to create a user
@@ -19,7 +20,11 @@ def create_user():
         db.session.add(new_user)
         db.session.commit()
         return jsonify({"message": "User created succesfully"}), 201
+    except IntegrityError:
+        db.session.rollback()
+        return jsonify({"error": "Email address already exists"}), 409
     except Exception as e:
+        db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
 # user list and enteries published
@@ -29,11 +34,11 @@ def get_users_with_entries():
         users_with_enteries = []
         users = User.query.all()
         for user in users:
+            user_entries = [{'title': entry.title, 'date': entry.date.strftime("%Y-%m-%d %H:%M:%S")} for entry in user.entries]
             user_list = {
                 'id': user.id,
                 'username': user.username,
-                'email': user.email,
-                'entries': [{'title': entry.title, 'date': entry.date.strftime("%Y-%m-%d %H:%M:%S")} for entry in user.entries]
+                'email': user.email,  
             }
             users_with_enteries.append(user_list)
         return jsonify(users_with_enteries), 200
@@ -78,7 +83,10 @@ def update_user(user_id):
         db.session.commit()
 
         return jsonify({"message": "User update successfully"}), 200
+    except KeyError as e:
+        return jsonify ({"message": f"Missing key in JSON data: {str(e)}"})
     except Exception as e:
+        db.session.rollback()
         return jsonify({"error": str(e)}), 500
     
 
@@ -95,4 +103,5 @@ def delete_user(user_id):
 
         return jsonify({"message": "User deleted successfully"}), 200
     except Exception as e:
+        db.session.rollback()
         return jsonify({"error": str(e)}), 500
