@@ -26,12 +26,12 @@ def create_user():
         if existing_username:
             return jsonify({"message": "Username already exists"}), 409
         
-       
-    
         new_user = User(email=email, username=username)
         db.session.add(new_user)
         db.session.commit()
-        return jsonify({"message": "User created succesfully"}), 201
+
+        user_id = new_user.id
+        return jsonify({"message": "User created succesfully with ID " + str(user_id)}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
