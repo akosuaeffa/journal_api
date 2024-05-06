@@ -15,16 +15,24 @@ def create_user():
 
         if not username or not email:
             return jsonify({"error": "Username and email are required"}), 400
+
+        existing_user = User.query.filter_by(email=email, username=username).all()
+        if existing_user:
+            return jsonify({"message": "User allready exixts"}), 409
+        existing_email = User.query.filter_by(email=email).first()
+        if existing_email:
+            return jsonify({"message":"email already exists"}), 409
+        existing_username = User.query.filter_by(username=username).first()
+        if existing_username:
+            return jsonify({"message": "Username already exists"}), 409
         
+       
+    
         new_user = User(email=email, username=username)
         db.session.add(new_user)
         db.session.commit()
         return jsonify({"message": "User created succesfully"}), 201
-    except IntegrityError:
-        db.session.rollback()
-        return jsonify({"error": "Email address already exists"}), 409
     except Exception as e:
-        db.session.rollback()
         return jsonify({"error": str(e)}), 500
 
 # user list and enteries published
