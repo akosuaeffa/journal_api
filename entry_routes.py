@@ -1,7 +1,5 @@
 from flask import jsonify, request
-from flask_sqlalchemy import SQLAlchemy
-from models import db, User, Entry
-from journal_api import app
+from models import db, User, Entry,app
 from datetime import datetime
 
 
@@ -14,14 +12,15 @@ def create_entry():
         title = data.get('title')
         content = data.get ('content')
         user_id = data.get ('user_id')
+        date = data.get('date')
 
         new_entry = Entry(title=title, content=content, user_id=user_id)
         db.session.add(new_entry)
         db.session.commit()
 
-        return jsonify({"message": "Entry created succesfully"}), 201
+        return jsonify({"message": "Entry created succesfully with User ID " + str(user_id)}), 201
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), 500 
 
 # to get entries   
 @app.route('/entries', methods=['GET'])
@@ -33,6 +32,7 @@ def get_entries():
             entry_data = {
                 'title': entry.title,
                 'user': user.username,
+                'content': entry.content,
                 'date': entry.date.strftime("%Y-%m-%d %H:%M:%S")
             }
             entries.append(entry_data)

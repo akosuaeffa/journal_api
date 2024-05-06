@@ -1,5 +1,15 @@
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+app = Flask(__name__)
+
+load_dotenv()
+
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 db = SQLAlchemy()
@@ -26,5 +36,4 @@ class Entry(db.Model):
 
     def __repr__(self):
         return f'<Entry {self.title}>'
-
-
+    

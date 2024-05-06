@@ -1,8 +1,6 @@
 from flask import jsonify, request, session
 from flask_sqlalchemy import SQLAlchemy
-from models import db, User, Entry
-from journal_api import app
-from sqlalchemy.exc import IntegrityError
+from models import db, User, Entry, app
 
 # CRUD operations for users
 # route to create a user
