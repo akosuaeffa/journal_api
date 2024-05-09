@@ -1,7 +1,8 @@
 from flask import jsonify, request
-from models import db, User, Entry,app
+from models import db, User, Entry, app
 from datetime import datetime
-
+from sqlalchemy import func
+# from flask_login import current_user
 
 # CRUD operations for Entries
 # to create an entry
@@ -11,10 +12,11 @@ def create_entry():
         data = request.get_json()
         title = data.get('title')
         content = data.get ('content')
-        user_id = data.get ('user_id')
+        user_id = data.get('user_id')
         date = data.get('date')
 
-        new_entry = Entry(title=title, content=content, user_id=user_id)
+        new_entry = Entry(title=title, content=content, user_id=user_id, date=date)
+
         db.session.add(new_entry)
         db.session.commit()
 
@@ -64,9 +66,9 @@ def update_entry(entry_id):
 def get_entries_by_date(date):
     try:
         specified_date = datetime.strptime(date, '%Y-%m-%d').date()
-
-        entries = Entry.query.filter(Entry.date == specified_date).all()
-
+    
+        entries = Entry.query.filter(func.date(Entry.date) >= specified_date).filter(func.date(Entry.date) <= specified_date).all()
+        
         entries_data = [{
             'title': entry.title,
             'user': entry.user.username,

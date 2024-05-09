@@ -2,6 +2,8 @@ from flask import jsonify, request, session
 from flask_sqlalchemy import SQLAlchemy
 from models import db, User, Entry, app
 
+
+
 # CRUD operations for users
 # route to create a user
 @app.route('/user', methods=['POST'])
@@ -16,7 +18,7 @@ def create_user():
 
         existing_user = User.query.filter_by(email=email, username=username).all()
         if existing_user:
-            return jsonify({"message": "User allready exixts"}), 409
+            return jsonify({"message": "User already exixts"}), 409
         existing_email = User.query.filter_by(email=email).first()
         if existing_email:
             return jsonify({"message":"email already exists"}), 409
@@ -92,7 +94,7 @@ def update_user(user_id):
     except KeyError as e:
         return jsonify ({"message": f"Missing key in JSON data: {str(e)}"})
     except Exception as e:
-        db.session.rollback()
+        # db.session.rollback()
         return jsonify({"error": str(e)}), 500
     
 

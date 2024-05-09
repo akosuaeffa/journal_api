@@ -30,7 +30,7 @@ class Entry(db.Model):
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=True)
     
     user = db.relationship('User', backref=db.backref('entries', lazy=True, cascade='all, delete-orphan'))
 
